@@ -1,6 +1,7 @@
 import requests, sys
 
-proxies = None
+proxies = []
+iter_proxies = []
 
 def get_proxies(path="proxies.txt"):
 	global proxies
@@ -35,15 +36,8 @@ def get_proxy():
 		linear proxy rotation
 	"""
 	global proxies, iter_proxies
-	try:
-		return next(iter_proxies)
-	except:
-		if proxies:
-			iter_proxies = iter(proxies)
-			return next(iter_proxies)
-		else:
-			print("proxies pool is not created")
-			return None
+	if len(iter_proxies) == 0: iter_proxies = list(proxies)
+	return iter_proxies.pop(0)
 
 def get_session(headers=None, proxy=None):
 	s = requests.Session()

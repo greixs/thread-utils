@@ -23,6 +23,9 @@ class Printer:
 		else:
 			self.id = id
 
+	def str(self):
+		return "{} {} {} {}".format(datetime.datetime.now().strftime(FORMAT)[:-3], "| task", self.id, "|")
+
 	def print(self, *args):
 		with PRINT_LOCK:
 			print(datetime.datetime.now().strftime(FORMAT)[:-3], "| task", self.id, "|", *args, flush=True)

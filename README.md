@@ -77,6 +77,14 @@ self.post("https://github.com/greixs/thread-utils", timeout=30)
 self.put("https://github.com/greixs/thread-utils", timeout=30)
 ```
 
+get proxies, it will parse the proxies <IP:port:user:pass> and save it in global "proxies" variable to be used in getting proxy method
+```python
+from thread_utils.session_handler import get_proxies, get_proxy
+get_proxies() # it will be saved in global variable
+print(get_proxy()) it will take the proxy from global variable
+
+```
+
 change proxy of a session
 ```python
 from thread_utils.session_handler import change_proxy
@@ -86,8 +94,6 @@ s = change_proxy(s, "username:password@127.0.0.1:31337")
 To-Do
 -----
 
-- fix get_proxy() method 
-- more modular classes
 - add more features
 
 
